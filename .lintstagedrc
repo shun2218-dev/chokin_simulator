@@ -1,0 +1,3 @@
+{
+  ".{vue,ts,cts,mts,js,cjs,mjs,tsx,jsx,css,scss}": "npm run fix"
+}
