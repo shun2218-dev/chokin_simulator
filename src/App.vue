@@ -2,12 +2,10 @@
   import { UNITS } from '@/const';
   import { afterUnitN } from '@/modules/afterUnitN/afterUnitN';
   import { calculatePerMonth } from '@/modules/calculatePerMonth/calculatePerMonth';
-  import { oneMonthLater } from '@/modules/oneMonthLater/oneMonthLater';
-  import { oneWeekLater } from '@/modules/oneWeekLater/oneWeekLater';
-  import { oneYearLater } from '@/modules/oneYearLater/oneYearLater';
   import { Unit } from '@/types';
   import dayjs from 'dayjs';
   import { computed, ref, watch } from 'vue';
+  import { oneUnitLater } from './modules/oneUnitLater/oneUnitLater';
 
   const duration = ref<number>(1);
   const targetAmount = ref<number>(10000);
@@ -15,11 +13,11 @@
   const output = ref<number | null>(null);
   const dayOfOutput = computed<number | null>(() => {
     if (output.value === null) return null;
-    return Math.round((output.value / oneMonthLater()) * 10) / 10;
+    return Math.round((output.value / oneUnitLater('day')) * 10) / 10;
   });
   const weekOfOutput = computed<number | null>(() => {
     if (output.value === null) return null;
-    return Math.round((output.value / (oneMonthLater() / oneWeekLater())) * 10) / 10;
+    return Math.round((output.value / (oneUnitLater('month') / oneUnitLater('week'))) * 10) / 10;
   });
   const monthOfOutput = computed<number | null>(() => {
     if (output.value === null) return null;
@@ -27,7 +25,7 @@
   });
   const yearOfOutput = computed<number | null>(() => {
     if (output.value === null) return null;
-    return Math.round(output.value * (oneYearLater() / oneMonthLater()) * 10) / 10;
+    return Math.round(output.value * (oneUnitLater('year') / oneUnitLater('month')) * 10) / 10;
   });
 
   const calculate = (): number => {
