@@ -5,7 +5,6 @@
   import { Unit } from '@/types';
   import dayjs from 'dayjs';
   import { computed, ref, watch } from 'vue';
-  import { oneUnitLater } from './modules/oneUnitLater/oneUnitLater';
 
   const duration = ref<number>(1);
   const targetAmount = ref<number>(10000);
@@ -13,11 +12,11 @@
   const output = ref<number | null>(null);
   const dayOfOutput = computed<number | null>(() => {
     if (output.value === null) return null;
-    return Math.round((output.value / oneUnitLater('day')) * 10) / 10;
+    return Math.round((output.value / afterUnitN(1, 'day')) * 10) / 10;
   });
   const weekOfOutput = computed<number | null>(() => {
     if (output.value === null) return null;
-    return Math.round((output.value / (oneUnitLater('month') / oneUnitLater('week'))) * 10) / 10;
+    return Math.round((output.value / (afterUnitN(1, 'month') / afterUnitN(1, 'week'))) * 10) / 10;
   });
   const monthOfOutput = computed<number | null>(() => {
     if (output.value === null) return null;
@@ -25,7 +24,7 @@
   });
   const yearOfOutput = computed<number | null>(() => {
     if (output.value === null) return null;
-    return Math.round(output.value * (oneUnitLater('year') / oneUnitLater('month')) * 10) / 10;
+    return Math.round(output.value * (afterUnitN(1, 'year') / afterUnitN(1, 'month')) * 10) / 10;
   });
 
   const calculate = (): number => {
