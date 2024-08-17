@@ -10,11 +10,15 @@
     "lint": "eslint . --fix",
     "format": "prettier --write src/",
     "fix": "run-p lint format",
+    "test:unit": "vitest",
+    "test:coverage": "vitest --coverage",
+    "test:report": "vitest --ui --coverage",
     "prepare": "husky",
     "commitlint": "commitlint --edit",
     "commit": "git cz"
   },
   "dependencies": {
+    "dayjs": "^1.11.12",
     "vue": "^3.4.37"
   },
   "devDependencies": {
@@ -24,13 +28,17 @@
     "@eslint/js": "^9.9.0",
     "@types/eslint__js": "^8.42.3",
     "@types/eslint-config-prettier": "^6.11.3",
+    "@types/jsdom": "^21.1.7",
     "@vitejs/plugin-vue": "^5.1.2",
+    "@vitest/coverage-v8": "^2.0.5",
+    "@vitest/ui": "^2.0.5",
     "eslint": "^9.9.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-vue": "^9.27.0",
     "git-cz": "^4.9.0",
     "globals": "^15.9.0",
     "husky": "^9.1.4",
+    "jsdom": "^24.1.1",
     "lint-staged": "^15.2.9",
     "npm-run-all2": "^6.2.2",
     "prettier": "^3.3.3",
@@ -39,6 +47,7 @@
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.1.0",
     "vite": "^5.4.1",
+    "vitest": "^2.0.5",
     "vue-tsc": "^2.0.29"
   }
 }
