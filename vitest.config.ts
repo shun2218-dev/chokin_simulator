@@ -11,6 +11,17 @@ export default mergeConfig(
       exclude: [...configDefaults.exclude],
       globals: true,
       root: fileURLToPath(new URL('./', import.meta.url)),
+      coverage: {
+        exclude: [
+          'src/App.vue',
+          'src/main.ts',
+          'src/const/**',
+          'src/types/**',
+          'src/*.d.ts',
+          '*.config.{j,cj,mj,t,ct,mt}s',
+          'src/**/*.spec.ts',
+        ],
+      },
     },
   }),
 );
